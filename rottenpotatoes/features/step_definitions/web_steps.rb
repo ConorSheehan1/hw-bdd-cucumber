@@ -92,6 +92,7 @@ end
 
 When /^(?:|I )uncheck "([^"]*)"$/ do |field|
   uncheck(field)
+  # find(:css, "#rating_#{field}").set(false)
 end
 
 When /^(?:|I )choose "([^"]*)"$/ do |field|

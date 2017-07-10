@@ -493,3 +493,69 @@ Started GET "/assets/application.self.css?body=1" for ::1 at 2015-07-23 13:57:16
 
 
 Started GET "/assets/application.self.js?body=1" for ::1 at 2015-07-23 13:57:16 -0700
+
+
+Started GET "/assets/rails.png" for ::1 at 2017-07-10 08:58:08 +0100
+
+
+Started GET "/movies" for ::1 at 2017-07-10 08:58:12 +0100
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (1.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'NC-17', 'R')[0m
+  Rendered movies/index.html.haml within layouts/application (25.5ms)
+Completed 200 OK in 460ms (Views: 412.3ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/assets/application.self-2b9b4ceb35a4568bfbe3001eb6cf7d691787c8ec9b2018eecbc3c235cc74b7a4.css?body=1" for ::1 at 2017-07-10 08:58:13 +0100
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2017-07-10 08:58:13 +0100
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2017-07-10 08:58:13 +0100
+
+
+Started GET "/assets/application.self-ac4347b135ab8935f2dd20089f2acc8bec1d6b2ad528a80fcb03cd445dbd4d27.js?body=1" for ::1 at 2017-07-10 08:58:13 +0100
+  [1m[36mMovie Load (9.8ms)[0m  [1mSELECT "movies".* FROM "movies"[0m
+  [1m[35mMovie Load (4.4ms)[0m  SELECT PG FROM "movies"
+  [1m[36mMovie Load (1.5ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" = ?[0m  [["rating", "PG"]]
+  [1m[35mMovie Load (5.0ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."rating" = ?  ORDER BY "movies"."id" ASC LIMIT 1  [["rating", "PG"]]
+
+
+Started GET "/assets/rails.png" for ::1 at 2017-07-10 10:17:53 +0100
+
+
+Started GET "/movies" for ::1 at 2017-07-10 10:17:58 +0100
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (0.6ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'NC-17', 'R')
+  Rendered movies/index.html.haml within layouts/application (3.5ms)
+Completed 200 OK in 87ms (Views: 85.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/movies?utf8=%E2%9C%93&ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BR%5D=1&commit=Refresh" for ::1 at 2017-07-10 10:18:03 +0100
+Processing by MoviesController#index as HTML
+  Parameters: {"utf8"=>"✓", "ratings"=>{"G"=>"1", "NC-17"=>"1", "R"=>"1"}, "commit"=>"Refresh"}
+Redirected to http://localhost:3000/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BR%5D=1
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BR%5D=1" for ::1 at 2017-07-10 10:18:03 +0100
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "NC-17"=>"1", "R"=>"1"}}
+  [1m[36mMovie Load (0.8ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'NC-17', 'R')[0m
+  Rendered movies/index.html.haml within layouts/application (3.4ms)
+Completed 200 OK in 77ms (Views: 75.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/movies?utf8=%E2%9C%93&ratings%5BPG%5D=1&ratings%5BR%5D=1&commit=Refresh" for ::1 at 2017-07-10 10:20:16 +0100
+Processing by MoviesController#index as HTML
+  Parameters: {"utf8"=>"✓", "ratings"=>{"PG"=>"1", "R"=>"1"}, "commit"=>"Refresh"}
+Redirected to http://localhost:3000/movies?ratings%5BPG%5D=1&ratings%5BR%5D=1
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BPG%5D=1&ratings%5BR%5D=1" for ::1 at 2017-07-10 10:20:16 +0100
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"PG"=>"1", "R"=>"1"}}
+  [1m[35mMovie Load (0.6ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('PG', 'R')
+  Rendered movies/index.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 46ms (Views: 45.2ms | ActiveRecord: 0.6ms)

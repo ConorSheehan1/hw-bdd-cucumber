@@ -25,21 +25,47 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
-  # if uncheck == "un"
-  puts("!!", uncheck)
+  # step "When I #{uncheck}check \"#{rating}\""
+
+  # uncheck the boxes
   rating_list.split(",").each() do |rating|
-    # When /I (un)?check/ rating
-    step "When I #{uncheck}check \"#{rating}\"" 
+    if uncheck == "un"
+      # When I uncheck "ratings_#{rating}"
+      find(:css, "#ratings_#{rating}").set(false)
+    else
+      # When I check "ratings_#{rating}"
+      find(:css, "#ratings_#{rating}").set(true)
+    end 
   end
-  # end
+end
 
-
-  # fail "Unimplemented"
+When /I submit ratings filter/ do
+  # hit refresh button to apply ratings filter
+  find(:css, "#ratings_submit").click()
 end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
   Movie.all().each() do |movie|
     expect(page).to have_content movie.title
+  end
+end
+
+Then /I should see all movies rated: (.*)/ do |ratings|
+  ratings.split(",").each() do |rating|
+    Movie.where(rating: rating).each() do |movie|
+      expect(page).to have_content movie.title
+    end
+  end
+end
+
+Then /I should not see any movies rated: (.*)/ do |ratings|
+  ratings.split(",").each() do |rating|
+    Movie.where(rating: rating).each() do |movie|
+      # step "Then I should not see \"#{movie.title}\""
+      # step %Q{Then I should not see "#{movie.title}"}
+      # Then I should not see movie.title
+      expect(page).not_to have_content movie.title
+    end
   end
 end
